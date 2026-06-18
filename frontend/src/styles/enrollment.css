@@ -1,0 +1,315 @@
+/* Enrollment Form */
+.enrollment-form {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 32px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.enrollment-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 32px;
+}
+
+.enrollment-column {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Form Groups */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333333;
+}
+
+/* Text Input */
+.form-input {
+  padding: 12px 14px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #333333;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  outline: none;
+  font-family: inherit;
+}
+
+.form-input:focus {
+  border-color: #ff6b00;
+  box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.1);
+}
+
+.form-input::placeholder {
+  color: #aaaaaa;
+}
+
+.form-input.input-error {
+  border-color: #e53935;
+  box-shadow: 0 0 0 3px rgba(229, 57, 53, 0.1);
+}
+
+/* Select Dropdown */
+.form-select {
+  padding: 12px 14px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #333333;
+  background-color: #ffffff;
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  outline: none;
+  font-family: inherit;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+}
+
+.form-select:focus {
+  border-color: #ff6b00;
+  box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.1);
+}
+
+.form-select.input-error {
+  border-color: #e53935;
+  box-shadow: 0 0 0 3px rgba(229, 57, 53, 0.1);
+}
+
+/* Radio Buttons */
+.radio-group {
+  display: flex;
+  gap: 24px;
+}
+
+.radio-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #333333;
+  cursor: pointer;
+}
+
+.radio-input {
+  accent-color: #ff6b00;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+/* Checkbox */
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: #333333;
+  cursor: pointer;
+}
+
+.checkbox-input {
+  accent-color: #ff6b00;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+/* Autocomplete */
+.autocomplete-wrapper {
+  position: relative;
+}
+
+.autocomplete-spinner {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  animation: spin 0.8s linear infinite;
+  color: #ff6b00;
+}
+
+@keyframes spin {
+  from { transform: translateY(-50%) rotate(0deg); }
+  to { transform: translateY(-50%) rotate(360deg); }
+}
+
+.autocomplete-clear {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 14px;
+  color: #999999;
+  cursor: pointer;
+  padding: 4px;
+  line-height: 1;
+}
+
+.autocomplete-clear:hover {
+  color: #333333;
+}
+
+.autocomplete-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: #ffffff;
+  border: 2px solid #e0e0e0;
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  z-index: 50;
+  max-height: 200px;
+  overflow-y: auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.autocomplete-item {
+  padding: 12px 14px;
+  font-size: 14px;
+  color: #333333;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.autocomplete-item:hover {
+  background-color: #fff3e6;
+  color: #ff6b00;
+}
+
+.autocomplete-item.no-results {
+  color: #999999;
+  cursor: default;
+}
+
+.autocomplete-item.no-results:hover {
+  background-color: transparent;
+  color: #999999;
+}
+
+/* Error Message */
+.error-message {
+  font-size: 12px;
+  color: #e53935;
+  font-weight: 500;
+}
+
+/* Alert */
+.alert {
+  padding: 14px 20px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.alert-success {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  border: 1px solid #c8e6c9;
+}
+
+/* Submit Button */
+.form-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.btn-submit {
+  background-color: #ff6b00;
+  color: #ffffff;
+  border: none;
+  padding: 14px 36px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  font-family: inherit;
+}
+
+.btn-submit:hover {
+  background-color: #e55d00;
+}
+
+.btn-submit:active {
+  transform: scale(0.97);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .enrollment-columns {
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .enrollment-column:last-child {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 768px) {
+  .enrollment-form {
+    padding: 24px;
+  }
+
+  .enrollment-columns {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .enrollment-column:last-child {
+    grid-column: span 1;
+  }
+
+  .radio-group {
+    gap: 16px;
+  }
+
+  .form-footer {
+    margin-top: 24px;
+    padding-top: 20px;
+  }
+
+  .btn-submit {
+    width: 100%;
+    padding: 16px;
+  }
+}
+
+@media (max-width: 400px) {
+  .enrollment-form {
+    padding: 16px;
+  }
+
+  .form-input,
+  .form-select {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+
+  .btn-submit {
+    padding: 14px;
+    font-size: 14px;
+  }
+}

@@ -1,0 +1,103 @@
+/* Contact Section — Full Width Footer Style */
+.contact-wrapper {
+  background-color: #36454f;
+  width: 100%;
+  padding: 48px 24px;
+  margin: 0;
+}
+
+.contact-heading {
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0;
+}
+
+.contact-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 1200px;
+}
+
+.contact-list-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #cccccc;
+  font-size: 15px;
+}
+
+.contact-list-icon {
+  font-size: 18px;
+  width: 24px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.contact-list-label {
+  font-weight: 600;
+  color: #ffffff;
+  min-width: 90px;
+}
+
+.contact-list-link {
+  color: #ff6b00;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  word-break: break-all;
+}
+
+.contact-list-link:hover {
+  color: #ff8c3a;
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .contact-wrapper {
+    padding: 36px 16px;
+  }
+
+  .contact-heading {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
+  .contact-list-item {
+    font-size: 14px;
+    gap: 8px;
+  }
+
+  .contact-list-label {
+    min-width: 75px;
+    font-size: 13px;
+  }
+
+  .contact-list-link {
+    font-size: 13px;
+  }
+
+  .contact-list-icon {
+    font-size: 16px;
+    width: 20px;
+  }
+}
+
+@media (max-width: 400px) {
+  .contact-list-item {
+    flex-wrap: wrap;
+    gap: 4px 8px;
+  }
+
+  .contact-list-label {
+    min-width: auto;
+  }
+}

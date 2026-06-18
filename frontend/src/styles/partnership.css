@@ -1,0 +1,134 @@
+.partnership-form {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.partnership-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.partnership-column {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.partnership-row {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-group-inline {
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+}
+
+.form-group-inline .form-label {
+  min-width: 150px;
+  margin-bottom: 0;
+}
+
+/* Compact CSV Upload */
+.csv-compact-zone {
+  border: 2px dashed #d0d0d0;
+  border-radius: 8px;
+  padding: 12px 14px;
+  background-color: #fafafa;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+  display: flex;
+  align-items: center;
+}
+
+.csv-compact-zone:hover {
+  border-color: #ff6b00;
+  background-color: #fff8f3;
+}
+
+.csv-upload-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  color: #666666;
+  width: 100%;
+}
+
+.csv-upload-icon {
+  font-size: 18px;
+}
+
+.csv-selected {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 8px;
+}
+
+.csv-name {
+  font-size: 13px;
+  color: #333333;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.file-input-hidden {
+  display: none;
+}
+
+.file-remove-btn {
+  background-color: #ffebee;
+  color: #e53935;
+  border: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background-color 0.2s ease;
+}
+
+.file-remove-btn:hover {
+  background-color: #ffcdd2;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .partnership-form {
+    padding: 20px;
+  }
+
+  .partnership-columns {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .form-group-inline {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .form-group-inline .form-label {
+    min-width: auto;
+  }
+}
+
+@media (max-width: 400px) {
+  .partnership-form {
+    padding: 16px;
+  }
+}

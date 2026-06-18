@@ -1,0 +1,35 @@
+const express = require("express");
+const cors = require("cors");
+const pool = require("./config/database");
+require("dotenv").config();
+
+const authRoutes = require("./routes/auth.routes");
+const locationRoutes = require("./routes/location.routes");
+const dashboardRoutes = require("./routes/dashboard.routes");
+const enrollmentRoutes = require("./routes/enrollment.routes");
+
+const app = express();
+const PORT = process.env.PORT || 5000;
+
+app.use(cors());
+app.use(express.json());
+
+// Routes
+app.use("/api/auth", authRoutes);
+app.use("/api/locations", locationRoutes);
+app.use("/api/dashboard", dashboardRoutes);
+app.use("/api/enrollment", enrollmentRoutes);
+
+// Health check
+app.get("/api/health", async (req, res) => {
+  try {
+    const [rows] = await pool.query("SELECT 1 + 1 AS result");
+    res.json({ status: "ok", message: "Server and database connected", result: rows[0].result });
+  } catch (error) {
+    res.status(500).json({ status: "error", message: error.message });
+  }
+});
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
