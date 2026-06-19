@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 
+const API_URL = "https://learner-tracker-production.up.railway.app/api";
+
 const useLocationSearch = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [suggestions, setSuggestions] = useState([]);
@@ -17,12 +19,14 @@ const useLocationSearch = () => {
       setIsLoading(true);
       try {
         const token = localStorage.getItem("token");
-        const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
-        const response = await fetch(`${apiUrl}/locations?search=${encodeURIComponent(searchTerm)}`, {
+        const response = await fetch(
+          `${API_URL}/locations?search=${encodeURIComponent(searchTerm)}`,
+          {
             headers: {
-               Authorization: token ? `Bearer ${token}` : "",
-                },
-              });
+              Authorization: token ? `Bearer ${token}` : "",
+            },
+          }
+        );
         const data = await response.json();
         setSuggestions(data.locations || []);
         setIsOpen(data.locations?.length > 0);
