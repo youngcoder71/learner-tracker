@@ -1,5 +1,5 @@
 import { useState } from "react";
-import useLocationSearch from "../../hooks/UseLocationSearch";
+import useLocationSearch from "../../hooks/useLocationSearch";
 import api from "../../services/api";
 import "../../styles/enrollment.css";
 
