@@ -18,7 +18,7 @@ const SummaryTiles = ({ cards }) => {
       label: "Male Learners",
       value: cards.maleLearners,
       color: "#2196f3",
-      icon: "👦",
+      icon: url('https://www.flaticon.com/free-icons/teacher'),
     },
     {
       label: "Learners with Disabilities",
