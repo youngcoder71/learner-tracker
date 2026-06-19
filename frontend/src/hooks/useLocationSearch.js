@@ -18,8 +18,12 @@ const useLocationSearch = () => {
       try {
         const token = localStorage.getItem("token");
         const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
-const response = await fetch(`${apiUrl}/locations?search=${encodeURIComponent(searchTerm)}`);
-        const data = await response.json();
+        const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
+        const response = await fetch(`${apiUrl}/locations?search=${encodeURIComponent(searchTerm)}`, {
+            headers: {
+               Authorization: token ? `Bearer ${token}` : "",
+                },
+              });const data = await response.json();
         setSuggestions(data.locations || []);
         setIsOpen(data.locations?.length > 0);
       } catch (error) {

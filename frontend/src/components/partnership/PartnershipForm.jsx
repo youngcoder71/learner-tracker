@@ -77,7 +77,7 @@ const PartnershipForm = () => {
     formPayload.append("photoLink", formData.photoLink);
 
     try {
-      const response = await fetch("http://localhost:5000/api/partnerships", {
+      const response = await fetch("http://import.meta.env.VITE_API_URL/api/partnerships", {
         method: "POST",
         body: formPayload,
       });
