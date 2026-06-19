@@ -256,6 +256,180 @@
   transform: scale(0.97);
 }
 
+/* Tabs */
+.enrollment-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.tab-btn {
+  padding: 12px 24px;
+  border: 2px solid var(--border-color);
+  background-color: var(--bg-card);
+  color: var(--text-secondary);
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.tab-btn.active {
+  border-color: var(--accent);
+  background-color: var(--accent-light);
+  color: var(--accent);
+}
+
+.tab-btn:hover:not(.active) {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* CSV Upload */
+.csv-upload-container {
+  background-color: var(--bg-card);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: var(--shadow-md);
+}
+
+.csv-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.csv-header h3 {
+  font-size: 18px;
+  color: var(--text-primary);
+}
+
+.btn-template {
+  background-color: transparent;
+  border: 2px solid var(--accent);
+  color: var(--accent);
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.btn-template:hover {
+  background-color: var(--accent);
+  color: #fff;
+}
+
+.csv-instructions {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+}
+
+.csv-dropzone {
+  border: 2px dashed var(--border-color);
+  border-radius: 10px;
+  padding: 32px;
+  text-align: center;
+  transition: all 0.2s ease;
+  background-color: var(--bg-input);
+}
+
+.csv-dropzone:hover {
+  border-color: var(--accent);
+  background-color: var(--accent-light);
+}
+
+.csv-dropzone.has-file {
+  border-color: #4caf50;
+  background-color: #e8f5e9;
+}
+
+.csv-drop-icon {
+  font-size: 36px;
+}
+
+.csv-dropzone p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin: 8px 0;
+}
+
+.csv-or {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.csv-browse-btn {
+  background-color: var(--accent);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-block;
+  margin-top: 8px;
+}
+
+.csv-file-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.csv-file-icon { font-size: 28px; }
+.csv-file-name { font-size: 14px; color: var(--text-primary); font-weight: 600; }
+.csv-file-size { font-size: 12px; color: var(--text-muted); }
+
+.csv-remove-btn {
+  background: #ffebee;
+  color: #e53935;
+  border: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+.csv-result {
+  margin-top: 16px;
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.csv-result.all-success {
+  background-color: #e8f5e9;
+  border: 1px solid #c8e6c9;
+}
+
+.csv-result.has-errors {
+  background-color: #fff3e0;
+  border: 1px solid #ffe0b2;
+}
+
+.csv-result-summary {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.csv-error-list {
+  margin-top: 8px;
+  padding-left: 20px;
+  font-size: 13px;
+  color: #e53935;
+}
+
+.file-input-hidden { display: none; }
+
 /* Responsive */
 @media (max-width: 1024px) {
   .enrollment-columns {
