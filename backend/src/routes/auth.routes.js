@@ -29,16 +29,13 @@ router.post("/register", async (req, res) => {
       [fullName, schoolName, position, email, passwordHash]
     );
 
-    // Send email
-    try {
-      const info = await sendPasswordEmail(email, password);
-      console.log("Password email sent:", info.messageId);
-    } catch (emailError) {
-      console.error("Failed to send email:", emailError.message);
-    }
+    // Send email in background - don't block
+    sendPasswordEmail(email, password)
+      .then(() => console.log("Email sent"))
+      .catch((err) => console.error("Email failed:", err.message));
 
     res.status(201).json({
-      message: "Registration successful. Password sent to your email.",
+      message: "Registration successful.",
       password: password,
       userId: result.insertId,
     });
