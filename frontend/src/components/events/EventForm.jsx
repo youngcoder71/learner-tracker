@@ -1,5 +1,5 @@
 import { useState } from "react";
-import useLocationSearch from "../../hooks/useLocationSearch";
+import useLocationSearch from "../../hooks/useLocationSearch.js";
 import useEvents from "../../hooks/useEvents";
 
 const EventForm = () => {
