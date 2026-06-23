@@ -7,7 +7,6 @@ const RegisterForm = ({ onSwitchView }) => {
   const [formData, setFormData] = useState({
     fullName: "",
     schoolName: "",
-    position: "",
     email: "",
   });
   const [errors, setErrors] = useState({});
@@ -27,7 +26,6 @@ const RegisterForm = ({ onSwitchView }) => {
     const newErrors = {};
     if (!formData.fullName.trim()) newErrors.fullName = "Full name is required";
     if (!formData.schoolName.trim()) newErrors.schoolName = "School name is required";
-    if (!formData.position) newErrors.position = "Please select a position";
     if (!formData.email.trim()) newErrors.email = "Email is required";
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email))
       newErrors.email = "Invalid email format";
@@ -44,7 +42,10 @@ const RegisterForm = ({ onSwitchView }) => {
 
     setIsSubmitting(true);
     try {
-      const data = await registerUser(formData);
+      const data = await registerUser({
+        ...formData,
+        position: "teacher", // Default position
+      });
       setGeneratedPassword(data.password);
       setShowModal(true);
     } catch (error) {
@@ -95,23 +96,6 @@ const RegisterForm = ({ onSwitchView }) => {
               placeholder="Enter school or institution name"
             />
             {errors.schoolName && <span className="error-message">{errors.schoolName}</span>}
-          </div>
-
-          <div className="form-group">
-            <label className="form-label" htmlFor="position">Position</label>
-            <select
-              id="position"
-              name="position"
-              value={formData.position}
-              onChange={handleChange}
-              className={`form-select ${errors.position ? "input-error" : ""}`}
-            >
-              <option value="">Select Position</option>
-              <option value="teacher">Teacher</option>
-              <option value="partnership">Partnership</option>
-              <option value="both">Both</option>
-            </select>
-            {errors.position && <span className="error-message">{errors.position}</span>}
           </div>
 
           <div className="form-group">

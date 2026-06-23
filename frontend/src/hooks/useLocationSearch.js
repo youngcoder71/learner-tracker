@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
 
-const API_URL = "https://learner-tracker-production.up.railway.app/api";
-
 const useLocationSearch = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [suggestions, setSuggestions] = useState([]);
@@ -20,7 +18,7 @@ const useLocationSearch = () => {
       try {
         const token = localStorage.getItem("token");
         const response = await fetch(
-          `${API_URL}/locations?search=${encodeURIComponent(searchTerm)}`,
+          `http://localhost:5000/api/locations?search=${encodeURIComponent(searchTerm)}`,
           {
             headers: {
               Authorization: token ? `Bearer ${token}` : "",

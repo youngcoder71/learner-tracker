@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import ResetPasswordForm from "./components/auth/ResetPasswordForm";
 import { AuthProvider, useAuth } from "./context/AuthContext";
 import Header from "./components/common/Header";
 import SummaryTiles from "./components/dashboard/SummaryTiles";
@@ -6,16 +8,16 @@ import LineGraph from "./components/dashboard/LineGraph";
 import BarGraph from "./components/dashboard/BarGraph";
 import EnrollmentForm from "./components/enrollment/EnrollmentForm";
 import EventsList from "./components/events/EventsList";
-import PartnershipForm from "./components/partnership/PartnershipForm";
 import ContactInfo from "./components/contact/ContactInfo";
 import LoginForm from "./components/auth/LoginForm";
 import RegisterForm from "./components/auth/RegisterForm";
 import ForgotPasswordForm from "./components/auth/ForgotPasswordForm";
+import AdminLayout from "./components/admin/AdminLayout";
 import useDashboard from "./hooks/useDashboard";
 import "./styles/global.css";
 
 const AppContent = () => {
-  const { isAuthenticated, user, isLoading } = useAuth();
+  const { isAuthenticated, user, isLoading, isAdmin } = useAuth();
   const [authView, setAuthView] = useState("login");
   const { data: dashboardData, refetch: refetchDashboard } = useDashboard();
   const [isDark, setIsDark] = useState(() => {
@@ -42,22 +44,43 @@ const AppContent = () => {
     );
   }
 
-  if (!isAuthenticated) {
-    return (
+if (!isAuthenticated) {
+  return (
+    <Routes>
+      <Route path="/reset-password/:token" element={
       <div className="app">
         <Header />
         <div className="auth-page">
-          {authView === "login" && <LoginForm onSwitchView={setAuthView} />}
-          {authView === "register" && <RegisterForm onSwitchView={setAuthView} />}
-          {authView === "forgot" && <ForgotPasswordForm onSwitchView={setAuthView} />}
+          <ResetPasswordForm onSwitchView={setAuthView} />
         </div>
+      </div>
+      } />
+      <Route path="*" element={
+        <div className="app">
+          <Header />
+          <div className="auth-page">
+            {authView === "login" && <LoginForm onSwitchView={setAuthView} />}
+            {authView === "register" && <RegisterForm onSwitchView={setAuthView} />}
+            {authView === "forgot" && <ForgotPasswordForm onSwitchView={setAuthView} />}
+          </div>
+        </div>
+      } />
+    </Routes>
+  );
+}
+
+  // Admin Portal
+  if (isAdmin) {
+    return (
+      <div className="app">
+        <AdminLayout />
       </div>
     );
   }
 
-  const showEnrollment = user?.position === "teacher" || user?.position === "both";
-  const showPartnership = user?.position === "partnership" || user?.position === "both";
-
+  // User Layout
+ const showEnrollment = true;
+ 
   return (
     <div className="app">
       <Header />
@@ -77,11 +100,6 @@ const AppContent = () => {
         <section id="events">
           <EventsList />
         </section>
-        {showPartnership && (
-          <section id="partnership">
-            <PartnershipForm />
-          </section>
-        )}
         <section id="contact">
           <ContactInfo />
         </section>
@@ -92,9 +110,11 @@ const AppContent = () => {
 
 function App() {
   return (
-    <AuthProvider>
-      <AppContent />
-    </AuthProvider>
+    <BrowserRouter>
+      <AuthProvider>
+        <AppContent />
+      </AuthProvider>
+    </BrowserRouter>
   );
 }
 

@@ -3,41 +3,19 @@ const pool = require("../config/database");
 const authenticate = require("../middleware/authenticate");
 const router = express.Router();
 
-// Get dashboard data
+// Get dashboard data - ALL learners (global stats)
 router.get("/", authenticate, async (req, res) => {
   try {
-    const teacherId = req.user.id;
+    // Summary cards - all learners
+    const [totalLearners] = await pool.query("SELECT COUNT(*) AS count FROM learners");
+    const [femaleLearners] = await pool.query("SELECT COUNT(*) AS count FROM learners WHERE gender = 'Female'");
+    const [maleLearners] = await pool.query("SELECT COUNT(*) AS count FROM learners WHERE gender = 'Male'");
+    const [disabledLearners] = await pool.query("SELECT COUNT(*) AS count FROM learners WHERE disability = TRUE");
+    const [institutions] = await pool.query("SELECT COUNT(DISTINCT institution_name) AS count FROM learners");
 
-    // Summary cards
-    const [totalLearners] = await pool.query(
-      "SELECT COUNT(*) AS count FROM learners WHERE teacher_id = ?",
-      [teacherId]
-    );
-
-    const [femaleLearners] = await pool.query(
-      "SELECT COUNT(*) AS count FROM learners WHERE teacher_id = ? AND gender = 'Female'",
-      [teacherId]
-    );
-
-    const [maleLearners] = await pool.query(
-      "SELECT COUNT(*) AS count FROM learners WHERE teacher_id = ? AND gender = 'Male'",
-      [teacherId]
-    );
-
-    const [disabledLearners] = await pool.query(
-      "SELECT COUNT(*) AS count FROM learners WHERE teacher_id = ? AND disability = TRUE",
-      [teacherId]
-    );
-
-    const [institutions] = await pool.query(
-      "SELECT COUNT(DISTINCT institution_name) AS count FROM learners WHERE teacher_id = ?",
-      [teacherId]
-    );
-
-    // Line graph data - learners by education level
+    // Line graph - learners by education level
     const [lineGraph] = await pool.query(
-      "SELECT education_level AS level, COUNT(*) AS count FROM learners WHERE teacher_id = ? GROUP BY education_level ORDER BY FIELD(education_level, 'Early Education', 'Primary', 'Secondary', 'Tertiary', 'Professional')",
-      [teacherId]
+      "SELECT education_level AS level, COUNT(*) AS count FROM learners GROUP BY education_level ORDER BY FIELD(education_level, 'Early Education', 'Primary', 'Secondary', 'Tertiary', 'Professional')"
     );
 
     res.json({

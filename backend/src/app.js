@@ -7,12 +7,19 @@ const authRoutes = require("./routes/auth.routes");
 const locationRoutes = require("./routes/location.routes");
 const dashboardRoutes = require("./routes/dashboard.routes");
 const enrollmentRoutes = require("./routes/enrollment.routes");
+const adminRoutes = require("./routes/admin.routes");
+const eventsRoutes = require("./routes/events.routes");
+const trashRoutes = require("./routes/trash.routes");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
+app.use("/api/admin", adminRoutes);
+app.use("/api/events", eventsRoutes);
+app.use("/api/admin/trash", trashRoutes);
+
 
 // Debug middleware
 app.use((req, res, next) => {
@@ -44,4 +51,20 @@ app.use((req, res) => {
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
+});
+
+const { cleanupExpiredTrash } = require("./utils/trashHelper");
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+  
+  // Cleanup expired trash every hour
+  setInterval(async () => {
+    try {
+      await cleanupExpiredTrash();
+      console.log("Trash cleanup completed");
+    } catch (err) {
+      console.error("Trash cleanup error:", err.message);
+    }
+  }, 60 * 60 * 1000);
 });

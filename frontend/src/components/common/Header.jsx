@@ -18,22 +18,18 @@ const Header = () => {
   const openMenu = () => setMenuOpen(true);
   const closeMenu = () => setMenuOpen(false);
 
-  const getUserNavLinks = () => {
-    if (!user) return [];
-    const links = [
-      { href: "#dashboard", label: "Dashboard" },
-    ];
-    if (user.position === "teacher" || user.position === "both") {
-      links.push({ href: "#enrollment", label: "Upload" });
-    }
-    links.push({ href: "#events", label: "Events" });
-    if (user.position === "partnership" || user.position === "both") {
-      links.push({ href: "#partnership", label: "Partnership" });
-    }
-    links.push({ href: "#contact", label: "Contact" });
-    return links;
-  };
-
+ const getUserNavLinks = () => {
+  if (!user) return [];
+  const links = [
+    { href: "#dashboard", label: "Dashboard" },
+  ];
+  if (user.position === "teacher" || user.position === "both") {
+    links.push({ href: "#enrollment", label: "Enrollment" });
+  }
+  links.push({ href: "#events", label: "Events" });
+  links.push({ href: "#contact", label: "Contact" });
+  return links;
+};
   const navLinks = getUserNavLinks();
 
   return (

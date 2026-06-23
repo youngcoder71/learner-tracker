@@ -11,7 +11,12 @@ const useEvents = () => {
   const fetchEvents = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch("http://import.meta.env.VITE_API_URL/api/events?status=upcoming");
+      const token = localStorage.getItem("token");
+      const response = await fetch("http://localhost:5000/api/events?status=active", {
+        headers: {
+          Authorization: token ? `Bearer ${token}` : "",
+        },
+      });
       const data = await response.json();
       setEvents(data.events || []);
     } catch (error) {
@@ -24,9 +29,13 @@ const useEvents = () => {
 
   const addEvent = async (eventData) => {
     try {
-      const response = await fetch("http://import.meta.env.VITE_API_URL/api/events", {
+      const token = localStorage.getItem("token");
+      const response = await fetch("http://localhost:5000/api/events", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: token ? `Bearer ${token}` : "",
+        },
         body: JSON.stringify(eventData),
       });
       if (response.ok) {
