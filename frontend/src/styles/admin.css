@@ -91,6 +91,77 @@
   color: #999;
 }
 
+/* Fixed height scrollable tables */
+.admin-table-wrapper {
+  max-height: 500px;
+  overflow-y: auto;
+  border-radius: 10px;
+  box-shadow: var(--shadow-md);
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--bg-card);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.admin-table thead {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.admin-table thead th {
+  background: #fafafa;
+  padding: 12px 14px;
+  text-align: left;
+  font-size: 13px;
+  color: #555;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.admin-table tbody td {
+  padding: 12px 14px;
+  font-size: 13px;
+  border-top: 1px solid #f0f0f0;
+}
+
+/* Scrollbar styling */
+.admin-table-wrapper::-webkit-scrollbar {
+  width: 8px;
+}
+
+.admin-table-wrapper::-webkit-scrollbar-track {
+  background: #f0f0f0;
+  border-radius: 4px;
+}
+
+.admin-table-wrapper::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}
+
+.admin-table-wrapper::-webkit-scrollbar-thumb:hover {
+  background: #aaa;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .admin-table-wrapper {
+    max-height: 400px;
+  }
+  
+  .admin-table thead th,
+  .admin-table tbody td {
+    padding: 8px 10px;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+}
+
 .admin-header-title {
   color: #ffffff;
   font-size: 18px;

@@ -91,7 +91,8 @@ const AdminTrash = () => {
         </div>
       )}
 
-      <table className="admin-table">
+      <div className="admin-table-wrapper">
+        <table className="admin-table">
         <thead>
           <tr>
             <th><input type="checkbox" checked={selected.length === filtered.length && filtered.length > 0} onChange={toggleAll} /></th>
@@ -125,6 +126,8 @@ const AdminTrash = () => {
           {filtered.length === 0 && <tr><td colSpan="6" className="empty-cell">Trash is empty</td></tr>}
         </tbody>
       </table>
+      
+      </div>
     </div>
   );
 };

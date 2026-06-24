@@ -150,7 +150,8 @@ const AdminUsers = () => {
         <button className="btn-delete-outline" onClick={deleteAll} disabled={filteredUsers.length === 0}>🗑 Delete All</button>
       </div>
 
-      <table className="admin-table">
+      <div className="admin-table-wrapper">
+        <table className="admin-table">
         <thead>
           <tr>
             <th><input type="checkbox" checked={selected.length === filteredUsers.length && filteredUsers.length > 0} onChange={toggleAll} /></th>
@@ -171,6 +172,8 @@ const AdminUsers = () => {
           {filteredUsers.length === 0 && <tr><td colSpan="6" className="empty-cell">No users found</td></tr>}
         </tbody>
       </table>
+      
+      </div>
     </div>
   );
 };

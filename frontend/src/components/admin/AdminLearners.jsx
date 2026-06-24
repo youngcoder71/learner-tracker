@@ -94,7 +94,8 @@ const AdminLearners = () => {
         </form>
       )}
       <div className="table-actions"><button className="btn-delete-outline" onClick={deleteAll} disabled={filteredLearners.length === 0}>🗑 Delete All</button></div>
-      <table className="admin-table">
+      <div className="admin-table-wrapper">
+        <table className="admin-table">
         <thead><tr><th><input type="checkbox" checked={selected.length === filteredLearners.length && filteredLearners.length > 0} onChange={toggleAll} /></th><th>Name</th><th>Institution</th><th>Gender</th><th>Level</th><th>Area</th><th>Location</th><th>Coordinator</th><th>Actions</th></tr></thead>
         <tbody>
           {filteredLearners.map(l => (
@@ -107,6 +108,7 @@ const AdminLearners = () => {
           {filteredLearners.length === 0 && <tr><td colSpan="9" className="empty-cell">No learners found</td></tr>}
         </tbody>
       </table>
+      </div>
     </div>
   );
 };

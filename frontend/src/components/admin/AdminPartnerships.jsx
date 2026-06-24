@@ -202,7 +202,8 @@ const AdminPartnerships = () => {
         <button className="btn-delete-outline" onClick={deleteAll} disabled={filteredPartnerships.length === 0}>🗑 Delete All</button>
       </div>
 
-      <table className="admin-table">
+      <div className="admin-table-wrapper">
+        <table className="admin-table">
         <thead>
           <tr>
             <th><input type="checkbox" checked={selected.length === filteredPartnerships.length && filteredPartnerships.length > 0} onChange={toggleAll} /></th>
@@ -234,6 +235,8 @@ const AdminPartnerships = () => {
           {filteredPartnerships.length === 0 && <tr><td colSpan="8" className="empty-cell">No partnerships found</td></tr>}
         </tbody>
       </table>
+      
+      </div>
     </div>
   );
 };

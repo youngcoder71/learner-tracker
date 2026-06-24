@@ -72,7 +72,8 @@ const AdminEvents = () => {
         </form>
       )}
       <div className="table-actions"><button className="btn-delete-outline" onClick={handleDeleteAll} disabled={filteredEvents.length === 0}>🗑 Delete All</button></div>
-      <table className="admin-table">
+      <div className="admin-table-wrapper">
+        <table className="admin-table">
         <thead><tr><th><input type="checkbox" checked={selected.length === filteredEvents.length && filteredEvents.length > 0} onChange={toggleAll} /></th><th>Name</th><th>Date</th><th>Area</th><th>Location</th><th>Status</th><th>By</th><th>Actions</th></tr></thead>
         <tbody>
           {filteredEvents.map(e => (
@@ -90,6 +91,9 @@ const AdminEvents = () => {
           {filteredEvents.length === 0 && <tr><td colSpan="8" className="empty-cell">No events</td></tr>}
         </tbody>
       </table>
+      
+      </div>
+      
       {selectedEvent && (
         <div className="modal-overlay" onClick={() => setSelectedEvent(null)}>
           <div className="event-modal" onClick={e => e.stopPropagation()}>

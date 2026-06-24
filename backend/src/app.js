@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require('path');
 const cors = require("cors");
 const pool = require("./config/database");
 require("dotenv").config();
@@ -16,6 +17,7 @@ const PORT = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
+app.use(express.static(path.join(__dirname, 'dist')));
 app.use("/api/admin", adminRoutes);
 app.use("/api/events", eventsRoutes);
 app.use("/api/admin/trash", trashRoutes);
@@ -41,6 +43,10 @@ app.get("/api/health", async (req, res) => {
   } catch (error) {
     res.status(500).json({ status: "error", message: error.message });
   }
+});
+
+app.get('/*path', (req, res) => {
+    res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 });
 
 // 404 handler
